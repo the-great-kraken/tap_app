@@ -7,16 +7,19 @@ void main() {
   runApp(MaterialApp(home: MyApp()));
 }
 
+/// Main class
 class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
+const int _divider = 2;
+const int _limit = 255;
+const double _tweenEnd = 4.0;
+
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   Color _backgroundColor = const Color.fromARGB(255, 0, 0, 0);
   Color _newColor = const Color.fromARGB(255, 255, 255, 255);
-
-  final int _limit = 255;
 
   Offset _touchPoint = Offset.zero;
 
@@ -30,7 +33,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       duration: const Duration(milliseconds: 600),
     );
     _newColorScale =
-        Tween(begin: 0.0, end: 4.0).animate(_newColorScaleController);
+        Tween(begin: 0.0, end: _tweenEnd).animate(_newColorScaleController);
     // Show a message at startup
     WidgetsBinding.instance?.addPostFrameCallback(
       (_) => ScaffoldMessenger.of(context).showSnackBar(
@@ -95,8 +98,10 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
           child: Stack(
             children: <Widget>[
               Positioned(
-                left: _touchPoint.dx - MediaQuery.of(context).size.width / 2,
-                top: _touchPoint.dy - MediaQuery.of(context).size.height / 2,
+                left: _touchPoint.dx -
+                    MediaQuery.of(context).size.width / _divider,
+                top: _touchPoint.dy -
+                    MediaQuery.of(context).size.height / _divider,
                 child: ScaleTransition(
                   scale: _newColorScale,
                   child: SingleChildScrollView(

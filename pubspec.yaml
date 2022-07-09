@@ -1,0 +1,39 @@
+name: tap_app
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+
+dependencies:
+  audiofileplayer: ^2.1.0
+  cupertino_icons: ^1.0.2
+  flutter:
+    sdk: flutter
+
+dev_dependencies:  
+  flutter_launcher_icons: ^0.9.3
+  flutter_test:
+    sdk: flutter
+  solid_lints: ^0.0.11
+
+flutter_icons:
+  android: launcher_icon
+  ios: true
+  image_path: assets/icon.png
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+     - assets/
+
+  fonts:
+    - family: Quicksand
+      fonts:
+        - asset: fonts/Quicksand-Medium.ttf
