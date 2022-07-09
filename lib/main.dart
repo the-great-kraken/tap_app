@@ -13,11 +13,13 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-const int _divider = 2;
-const int _limit = 255;
-const double _tweenEnd = 4.0;
-
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
+  static const int _divider = 2;
+
+  /// Limit for random
+  static const int _limit = 255;
+  static const double _tweenEnd = 4.0;
+
   Color _backgroundColor = const Color.fromARGB(255, 0, 0, 0);
   Color _newColor = const Color.fromARGB(255, 255, 255, 255);
 
@@ -34,7 +36,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     );
     _newColorScale =
         Tween(begin: 0.0, end: _tweenEnd).animate(_newColorScaleController);
-    // Show a message at startup
+
+    /// Show a message at startup
     WidgetsBinding.instance?.addPostFrameCallback(
       (_) => ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -53,7 +56,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     super.initState();
   }
 
-  // Generate random RGB color
+  /// Generate random RGB color
   Color _getRandomColor() => Color.fromARGB(
         _limit,
         Random().nextInt(_limit),
@@ -61,7 +64,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         Random().nextInt(_limit),
       );
 
-  // Change background color
+  /// Change background color
   void _updateColor(TapDownDetails details) {
     setState(() {
       _touchPoint = details.localPosition;
@@ -75,7 +78,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     _newColor = _getRandomColor();
   }
 
-  // Play sound
+  /// Play sound
   void _playSound() {
     Audio.load('assets/click.wav')
       ..play()
